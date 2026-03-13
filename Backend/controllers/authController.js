@@ -17,7 +17,7 @@ export const signupUser = async (req,resp) =>{
 }
 export const loginuser = async (req,resp) =>{
     try{
-        const {email,password} = req.body
+        const {email,password} = req.body // Destructuring
 
         const user = await User.findOne({email})
 
