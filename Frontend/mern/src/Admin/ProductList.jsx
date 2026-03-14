@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
+import { Link } from 'react-router-dom'
+import api from '../Axios'
 const ProductList = () => {
     const [products,setproducts] = useState([])
     async function loadProducts(){
@@ -26,8 +27,8 @@ const ProductList = () => {
                 return(
                     <div>
                         <h1>{item.title}</h1>
-                        <Link to={`/products/edit/${products._id}`}>Edit</Link>
-                      <button onClick={()=>deletedProducts(products._id)}>Delete</button>
+                        <Link to={`/admin/products/edit/${item._id}`}  >Edit</Link>
+                      <button onClick={()=>deletedProducts(item._id)}>Delete</button>
                         </div>
                 )
             })
