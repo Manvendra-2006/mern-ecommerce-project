@@ -13,7 +13,15 @@ export const createProduct = async (req,resp) =>{
 }
 export const getProducts = async (req,resp) =>{
     try{
-        const products = await productData.find().sort({createdAt : -1})
+        const {search,category} = req.query
+        const filter = {};
+        if(search){
+            filter.title = {$regex:search,$options:'i'}
+        }
+        if(category){
+            filter.category = {$regex:category,$options:'i'}
+        }
+        const products = await productData.find(filter).sort({createdAt : -1})
         resp.json(products)
     }
     catch(error){
