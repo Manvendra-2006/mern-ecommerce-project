@@ -8,6 +8,7 @@ const EditProduct = () => {
     const [stock, setstock] = useState(0)
     const [prices, setprices] = useState(0)
     const [category, setcategory] = useState('')
+    const [image,setimage] = useState('')
     async function loadProducts() {
         const response = await api.get("/products")
         const Data = response.data.find((item) => item._id == id)
@@ -18,6 +19,7 @@ const EditProduct = () => {
             setcategory(Data.category)
             setprices(Data.prices)
             setstock(Data.stock)
+            setimage(Data.image)
         }
 
     }
@@ -32,7 +34,8 @@ const EditProduct = () => {
                 description,
                 stock,
                 prices,
-                category
+                category,
+                image
             })
             alert("Product is updated")
         }
@@ -58,7 +61,8 @@ const EditProduct = () => {
                 <input type="number" placeholder='Enter Stock' name="stock" value={stock} onChange={(event) => setstock(event.target.value)} />
                 <br />
                 <br />
-                <button type="submit">Add Product</button>
+                 <input type="text" placeholder='Enter image' name='image' value={image} onChange={(event)=>setimage(event.target.value)}/>
+                <button type="submit">Edit Product</button>
             </form>
         </div>
     )

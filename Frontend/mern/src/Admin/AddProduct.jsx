@@ -8,6 +8,7 @@ const AddProduct = () => {
     const [stock, setstock] = useState(0)
     const [prices, setprices] = useState(0)
     const [category, setcategory] = useState('')
+    const [image,setimage] = useState('')
     const navigate = useNavigate()
     async function addproducts(event) {
         event.preventDefault()
@@ -17,6 +18,7 @@ const AddProduct = () => {
             stock,
             prices,
             category,
+            image
         }
         try {
             await api.post("/products/add", productsData)
@@ -45,6 +47,7 @@ const AddProduct = () => {
                 <input type="number" placeholder='Enter Stock' name="stock" value={stock} onChange={(event) => setstock(event.target.value)} />
                 <br />
                 <br />
+                <input type="text" placeholder='Enter image' name='image' value={image} onChange={(event)=>setimage(event.target.value)}/>
                 <button type="submit">Add Product</button>
             </form>
         </div>
