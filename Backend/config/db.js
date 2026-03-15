@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 async function connectDB(){
     await  mongoose.connect(process.env.MongoURL)
+    console.log("DataBase is connected")
     // const schema = mongoose.Schema({
 
     // })

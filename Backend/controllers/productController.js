@@ -1,7 +1,7 @@
-import productData from "../models/product.js";
+import Product from "../models/product.js";
 export const createProduct = async (req,resp) =>{
     try{
-        const product = await productData.create(req.body);
+        const product = await Product.create(req.body);
         resp.json({
             message : "Product Created Successfully",
             product,
@@ -21,7 +21,7 @@ export const getProducts = async (req,resp) =>{
         if(category){
             filter.category = {$regex:category,$options:'i'}
         }
-        const products = await productData.find(filter).sort({createdAt : -1})
+        const products = await Product.find(filter).sort({createdAt : -1})
         resp.json(products)
     }
     catch(error){
@@ -30,7 +30,7 @@ export const getProducts = async (req,resp) =>{
 }
 export const updateProducts = async (req,resp) =>{
     try{
-        const updated = await productData.findByIdAndUpdate(req.params.id,req.body,{returnDocument:"after"})
+        const updated = await Product.findByIdAndUpdate(req.params.id,req.body,{returnDocument:"after"})
         resp.json({
             message:"Product updated successfully",
             updated
@@ -42,7 +42,7 @@ export const updateProducts = async (req,resp) =>{
 }
 export const deleteProducts = async (req,resp) =>{
     try{
-        const deleted = await productData.findByIdAndDelete(req.params.id,req.body,{returnDocument:"after"})
+        const deleted = await Product.findByIdAndDelete(req.params.id,req.body,{returnDocument:"after"})
         resp.json({
             message:"Products Deleted Successfully",
             deleted
