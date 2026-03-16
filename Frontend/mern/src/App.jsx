@@ -8,6 +8,7 @@ import EditProduct from "./Admin/EditProduct";
 import AddProduct from "./Admin/AddProduct";
 import ProductList from "./Admin/ProductList";
 import Navbar from "./Components/Header";
+import Cart from "./Components/Cart";
 function Layout(){
   return(
     <div>
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/admin/products" element={<ProductList />} />
           <Route path="/admin/products/edit/:id" element={<EditProduct />} />
           <Route path="/admin/products/add" element={<AddProduct />} />
+          <Route path="/user/cart" element={<Cart/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

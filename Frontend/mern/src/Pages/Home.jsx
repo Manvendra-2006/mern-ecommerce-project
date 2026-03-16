@@ -17,6 +17,20 @@ const Home = () => {
   useEffect(()=>{
     loadProducts()    
   },[search,category])
+ 
+  const addToCart = async (productId) =>{
+    const userId = localStorage.getItem("userId");
+    if(!userId){
+      alert("Please log in to add items to your cart");
+      return ;
+    }
+    const res = await api.post('/cart/add',{userId,productId})
+    const res1 = await api.get(`/cart/${userId}`)
+    
+    const total = res1.data.items.reduce((sum , item) => sum +  item.quantity, 0)
+    localStorage.setItem("cartCount",total);
+    window.dispatchEvent(new Event('cartUpdated'))
+  }
   return (
     <div>
       <input type="text" placeholder='Search Products' value={search} onChange={(event)=>setsearch(event.target.value)}/>
@@ -35,11 +49,13 @@ const Home = () => {
               alt={item.title}
               />
               </Link>
+              <p>{item.prices}</p>
+               <button onClick={()=>addToCart(item._id)}>Add to Cart</button>
               </div>
           )
         })
       }
-       
+      
     </div>
   )
 }

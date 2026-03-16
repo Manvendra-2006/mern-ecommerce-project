@@ -16,6 +16,7 @@ const Login = () => {
     .then((res)=>{
       console.log("Login Successfully")
       localStorage.setItem('token',res.data.token) // axios main backend se aaya hua data res.data main hota hain aur frontend se ackend main koi data jata hain toh backend main req.body main jaata hain
+      localStorage.setItem('userId',res.data.user.id)
       alert("Login Successfully")
       navigate("/")
       

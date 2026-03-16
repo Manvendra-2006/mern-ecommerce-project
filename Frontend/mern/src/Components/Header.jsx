@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import api from "../Axios";
 import { Link, useNavigate } from "react-router-dom";
 export default function Navbar(){
     const navigate = useNavigate()
@@ -15,7 +16,7 @@ export default function Navbar(){
                 setcartCount(total)
             }
             loadCart()
-            window.addEventListener("cartUpdated",loadCart)
+            window.addEventListener("cartUpdated",loadCart) // Jab hi cartUpdated event trigger hota hain toh loadCart update ho jata hain
             return ()=>{
                 window.removeEventListener("cartUpdated",loadCart)
             }
@@ -30,7 +31,7 @@ export default function Navbar(){
         <nav>
             <Link to="/">Mohit Store</Link>
             <div>
-                <Link to="/cart">Cart Symbol{
+                <Link to="/user/cart">Cart Symbol{
                     cartCount>0 && (
                         <span>
                             {cartCount}
