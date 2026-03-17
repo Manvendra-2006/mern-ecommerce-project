@@ -5,6 +5,7 @@ import connectDB from './config/db.js'
 import router from './Routes/authRoutes.js'
 import productrouter from './Routes/ProductRoutes.js'
 import cartrouter from './Routes/cartRoutes.js'
+import addressrouter from './Routes/addressRoutes.js'
 dotenv.config() // dotenv is a npm pacakge and dotenv.config() is a function which loads .env file variable in node.js application
 connectDB()
 const app = express()
@@ -13,4 +14,5 @@ app.use(express.json()) // This middleware converts json data into javaScript ob
 app.use('/api/auth',router) // It connects router and /api/auth
 app.use('/api/products',productrouter)
 app.use('/api/cart',cartrouter)
+app.use('/api/address',addressrouter)
 app.listen(8900)
