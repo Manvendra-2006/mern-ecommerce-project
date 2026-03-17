@@ -9,6 +9,8 @@ import AddProduct from "./Admin/AddProduct";
 import ProductList from "./Admin/ProductList";
 import Navbar from "./Components/Header";
 import Cart from "./Components/Cart";
+import CheckOutAddress from "./Pages/CheckOutAddress";
+import CheckOut from "./Pages/CheckOut";
 function Layout(){
   return(
     <div>
@@ -31,6 +33,8 @@ const App = () => {
           <Route path="/admin/products/edit/:id" element={<EditProduct />} />
           <Route path="/admin/products/add" element={<AddProduct />} />
           <Route path="/user/cart" element={<Cart/>}/>
+          <Route path="/checkout-address" element={<CheckOutAddress/>}/>
+          <Route path="/checkout" element={<CheckOut/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

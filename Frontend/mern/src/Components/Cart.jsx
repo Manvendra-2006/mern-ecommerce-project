@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import api from "../Axios";
+import {  useNavigate } from "react-router";
 export default function Cart() {
     const userId = localStorage.getItem("userId")
+    const navigate = useNavigate()
     const [cart, setcart] = useState(null)
     async function loadCart() {
         if (!userId) return;
@@ -27,11 +29,14 @@ export default function Cart() {
         await loadCart()
         window.dispatchEvent(new Event("cartUpdated"))
     }
+    function checkout(){
+        navigate("/checkout-address")
+    }
     if (!cart) {
         return <div>....Loading</div>
     }
     const total = cart.items.reduce((sum, item) => sum + item.productId.prices * item.quantity, 0) // Here 0 is a initial value of sum
-   
+
     return (
         <div>
             <h1>Your Cart</h1>
@@ -68,9 +73,16 @@ export default function Cart() {
                             <div>
                                 Total : {total.toFixed(2)}
                             </div>
+                            <button onClick={(event)=>checkout(event)}>Proceed to CheckOut</button>
                         </div>
                     )
             }
         </div>
     )
 } // here .toFixed(2) is a method which convert number upto two decimal place and convert it into string
+
+
+
+
+
+// When any user is doing add to cart then always not a new document is not formed in carts usi ke andar add to cart hoga 
