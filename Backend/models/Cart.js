@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const CartSchema = new mongoose.Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId, // Through this This line create a relation it stores id of different Collection
