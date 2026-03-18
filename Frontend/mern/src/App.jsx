@@ -11,6 +11,7 @@ import Navbar from "./Components/Header";
 import Cart from "./Components/Cart";
 import CheckOutAddress from "./Pages/CheckOutAddress";
 import CheckOut from "./Pages/CheckOut";
+import OrderSuccess from "./Pages/OrderSuccess";
 function Layout(){
   return(
     <div>
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/user/cart" element={<Cart/>}/>
           <Route path="/checkout-address" element={<CheckOutAddress/>}/>
           <Route path="/checkout" element={<CheckOut/>}/>
+          <Route path="/order-success/:id" element={<OrderSuccess/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
