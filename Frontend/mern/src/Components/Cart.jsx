@@ -44,7 +44,7 @@ export default function Cart() {
     return <div style={{ textAlign: "center", marginTop: "50px", fontSize: "20px" }}>....Loading</div>;
   }
 
-  const total = cart.items.reduce((sum, item) => sum + item.productId.prices * item.quantity, 0);
+  const total = cart?.items?.reduce((sum, item) => sum + item.productId.prices * item.quantity, 0);
 
   return (
     <div style={{ maxWidth: "900px", margin: "30px auto", fontFamily: "Arial, sans-serif" }}>

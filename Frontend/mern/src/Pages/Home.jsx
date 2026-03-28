@@ -47,6 +47,8 @@ const Home = () => {
               <img 
               src={item.image}
               alt={item.title}
+              height="250px"
+              width="250px"              
               />
               </Link>
               <p>{item.prices}</p>

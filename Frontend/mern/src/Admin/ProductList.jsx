@@ -27,7 +27,7 @@ const ProductList = () => {
                 return(
                     <div>
                         <h1>{item.title}</h1>
-                        <img src={item.image}/>
+                        <img src={item.image} height="150px" width="150px"/>
                         <Link to={`/admin/products/edit/${item._id}`}  >Edit</Link>
                       <button onClick={()=>deletedProducts(item._id)}>Delete</button>
                         </div>
