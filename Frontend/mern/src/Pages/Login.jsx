@@ -1,46 +1,102 @@
-
 import React, { useState } from 'react'
 import api from '../Axios'
 import { useNavigate } from 'react-router'
+
 const Login = () => {
-  const [email,setemail] = useState('')
-  const [password,setpassword] = useState('')
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
   const navigate = useNavigate()
-  function handlelogin(event){
+
+  function handlelogin(event) {
     event.preventDefault()
-    const userData = {
-      email,
-      password,
-    }
-    api.post("/auth/login",userData)
-    .then((res)=>{
-      console.log("Login Successfully")
-      localStorage.setItem('token',res.data.token) // axios main backend se aaya hua data res.data main hota hain aur frontend se ackend main koi data jata hain toh backend main req.body main jaata hain
-      localStorage.setItem('userId',res.data.user.id)
-      alert("Login Successfully")
-      navigate("/")
-      
-    })
-    .catch(()=>{
-      console.log("Login Failed")
-      alert("Login Not Valid")
-    })
+    const userData = { email, password }
+
+    api.post("/auth/login", userData)
+      .then((res) => {
+        console.log("Login Successfully")
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('userId', res.data.user.id)
+        alert("Login Successfully")
+        navigate("/")
+      })
+      .catch(() => {
+        console.log("Login Failed")
+        alert("Login Not Valid")
+      })
   }
+
   return (
-    <div>
-      <form action="" onSubmit={(event)=>handlelogin(event)}>  
-        <input type="text" placeholder='Enter Email....' name="email" onChange={(event)=>setemail(event.target.value)} value={email}/>
-        <br/>
-        <br/>
-        <input type="password" placeholder='Enter Password....' name='password' onChange={(event)=>setpassword(event.target.value)} value={password}/>
-        <br/>
-        <br/>
-        <button type='submit'>Login</button>
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f3f4f6'
+    }}>
+
+      <form onSubmit={handlelogin} style={{
+        backgroundColor: '#fff',
+        padding: '30px',
+        borderRadius: '12px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        width: '350px'
+      }}>
+
+        <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Login</h2>
+
+        <input
+          type="text"
+          placeholder='Enter Email'
+          name="email"
+          value={email}
+          onChange={(e) => setemail(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            border: '1px solid #ccc'
+          }}
+        />
+
+        <input
+          type="password"
+          placeholder='Enter Password'
+          name='password'
+          value={password}
+          onChange={(e) => setpassword(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '20px',
+            borderRadius: '8px',
+            border: '1px solid #ccc'
+          }}
+        />
+
+        <button
+          type='submit'
+          style={{
+            width: '100%',
+            padding: '12px',
+            backgroundColor: '#2563eb',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          Login
+        </button>
+
       </form>
+
     </div>
   )
 }
 
 export default Login
 
-// humne action ka use isliye nhi kiya kykoi jab hum krenge toh Browser /login url pe request bhejga aur reload ho jayega fir server response
+// Note: action attribute use nahi kiya kyunki React SPA me page reload avoid karte hain.
+// handlelogin function manually API call karta hai aur smooth navigation deta hai.

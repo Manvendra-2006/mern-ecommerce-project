@@ -1,41 +1,108 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import api from '../Axios'
+
 const Signup = () => {
-  const [name,setname] = useState('')
-  const [email,setemail] = useState('')
-  const [password,setpassword] = useState('')
-  function handleSignUp(event){
-      event.preventDefault()
-      const userData ={
-        name,
-        email,
-        password,
-      }
-      api.post("/auth/signup",userData) // Ye axios ki post request hain jo isme body ke andar object store ho rha hain aur backend main req.body main reecive ho rha hain
-      .then((response)=>{
+  const [name, setname] = useState('')
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+
+  function handleSignUp(event) {
+    event.preventDefault()
+    const userData = { name, email, password }
+
+    api.post("/auth/signup", userData)
+      .then(() => {
         console.log("User SignUp successfully")
         alert("User Registered Successfully")
       })
-      .catch((error)=>{
+      .catch(() => {
         console.log("User is not signup")
         alert("User is not registered successfully")
       })
   }
+
   return (
-    <div>
-      <form onSubmit={(event)=>handleSignUp(event)}>
-        <input type="text" placeholder='Enter Name' name='name' value={name} onChange={(event)=>setname(event.target.value)}/>
-        <br/>
-        <br/>
-        <input type = "text" placeholder='Enter Email' name="email" value={email} onChange={(event)=>setemail(event.target.value)}/>
-        <br/>
-        <br/>
-        <input type = "text" placeholder='Enter Password' name="password" value={password} onChange={(event)=>setpassword(event.target.value)}/>
-        <br/>
-        <br/>
-        <button type='submit'>Sign Up</button>
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f3f4f6'
+    }}>
+
+      <form onSubmit={handleSignUp} style={{
+        backgroundColor: '#fff',
+        padding: '30px',
+        borderRadius: '12px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        width: '350px'
+      }}>
+
+        <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Sign Up</h2>
+
+        <input
+          type="text"
+          placeholder='Enter Name'
+          name='name'
+          value={name}
+          onChange={(e) => setname(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            border: '1px solid #ccc'
+          }}
+        />
+
+        <input
+          type="text"
+          placeholder='Enter Email'
+          name="email"
+          value={email}
+          onChange={(e) => setemail(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            border: '1px solid #ccc'
+          }}
+        />
+
+        <input
+          type="password"
+          placeholder='Enter Password'
+          name="password"
+          value={password}
+          onChange={(e) => setpassword(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '20px',
+            borderRadius: '8px',
+            border: '1px solid #ccc'
+          }}
+        />
+
+        <button
+          type='submit'
+          style={{
+            width: '100%',
+            padding: '12px',
+            backgroundColor: '#16a34a',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          Sign Up
+        </button>
+
       </form>
+
     </div>
   )
 }

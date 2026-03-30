@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../Axios";
 import { Link, useNavigate } from "react-router-dom";
+
 export default function Navbar() {
   const navigate = useNavigate();
   const [cartCount, setCartCount] = useState(0);
@@ -16,9 +17,7 @@ export default function Navbar() {
 
     loadCart();
     window.addEventListener("cartUpdated", loadCart);
-    return () => {
-      window.removeEventListener("cartUpdated", loadCart);
-    };
+    return () => window.removeEventListener("cartUpdated", loadCart);
   }, [userId]);
 
   const logout = () => {
@@ -33,38 +32,60 @@ export default function Navbar() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "10px 20px",
-        backgroundColor: "#00b894",
+        padding: "12px 24px",
+        background: "linear-gradient(135deg, #10b981, #059669)",
         color: "#fff",
-        fontFamily: "Arial, sans-serif",
         position: "sticky",
         top: 0,
         zIndex: 1000,
-        boxShadow: "0px 2px 6px rgba(0,0,0,0.2)"
+        boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+        backdropFilter: "blur(6px)"
       }}
     >
-      <Link to="/" style={{ textDecoration: "none", color: "#fff", fontSize: "24px", fontWeight: "bold" }}>
-        Mohit Store
+      {/* Logo */}
+      <Link
+        to="/"
+        style={{
+          textDecoration: "none",
+          color: "#fff",
+          fontSize: "22px",
+          fontWeight: "700",
+          letterSpacing: "0.5px"
+        }}
+      >
+        🛍 Mohit Store
       </Link>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+      {/* Right Section */}
+      <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
+
+        {/* Cart */}
         <Link
           to="/user/cart"
-          style={{ position: "relative", textDecoration: "none", color: "#fff", fontSize: "18px" }}
+          style={{
+            position: "relative",
+            textDecoration: "none",
+            color: "#fff",
+            fontSize: "17px",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px"
+          }}
         >
           🛒 Cart
           {cartCount > 0 && (
             <span
               style={{
                 position: "absolute",
-                top: "-8px",
-                right: "-12px",
-                backgroundColor: "#ff4c3b",
+                top: "-6px",
+                right: "-10px",
+                backgroundColor: "#ef4444",
                 color: "#fff",
                 borderRadius: "50%",
-                padding: "2px 6px",
-                fontSize: "12px",
-                fontWeight: "bold"
+                padding: "2px 7px",
+                fontSize: "11px",
+                fontWeight: "bold",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.2)"
               }}
             >
               {cartCount}
@@ -79,45 +100,54 @@ export default function Navbar() {
               style={{
                 textDecoration: "none",
                 color: "#fff",
-                fontSize: "16px",
-                padding: "6px 12px",
+                fontSize: "15px",
+                padding: "6px 14px",
                 border: "1px solid #fff",
-                borderRadius: "5px",
-                transition: "0.3s",
+                borderRadius: "20px",
+                transition: "0.3s"
               }}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "rgba(255,255,255,0.2)")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "transparent")}
             >
               Login
             </Link>
+
             <Link
               to="/signup"
               style={{
                 textDecoration: "none",
-                color: "#00b894",
+                color: "#059669",
                 backgroundColor: "#fff",
-                fontSize: "16px",
-                padding: "6px 12px",
-                borderRadius: "5px",
-                transition: "0.3s",
+                fontSize: "15px",
+                padding: "6px 14px",
+                borderRadius: "20px",
+                fontWeight: "600",
+                transition: "0.3s"
               }}
+              onMouseOver={(e) => (e.target.style.opacity = "0.85")}
+              onMouseOut={(e) => (e.target.style.opacity = "1")}
             >
-              SignUp
+              Sign Up
             </Link>
           </>
         ) : (
           <button
             onClick={logout}
             style={{
-              backgroundColor: "#ff4c3b",
+              backgroundColor: "#ef4444",
               color: "#fff",
               border: "none",
-              padding: "6px 12px",
-              borderRadius: "5px",
+              padding: "6px 14px",
+              borderRadius: "20px",
               cursor: "pointer",
-              fontSize: "16px",
+              fontSize: "15px",
+              fontWeight: "500",
               transition: "0.3s"
             }}
+            onMouseOver={(e) => (e.target.style.opacity = "0.85")}
+            onMouseOut={(e) => (e.target.style.opacity = "1")}
           >
-            LogOut
+            Logout
           </button>
         )}
       </div>
