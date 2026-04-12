@@ -13,7 +13,11 @@ connectDB()
 const app = express()
 const __dirname = path.resolve()
 console.log(__dirname)
-app.use(cors())
+const corsOptions = {
+    origin:"http://localhost:5173",
+    credentials:true
+}
+app.use(cors(corsOptions))
 app.use(express.json()) // This middleware converts json data into javaScript object
 app.use('/api/auth',router) // It connects router and /api/auth
 app.use('/api/products',productrouter)
