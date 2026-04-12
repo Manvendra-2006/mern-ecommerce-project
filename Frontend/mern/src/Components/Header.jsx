@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../Axios";
+import api from "../axios";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {

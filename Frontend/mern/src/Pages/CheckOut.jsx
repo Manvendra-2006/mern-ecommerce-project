@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import api from '../Axios'
+import api from '../axios'
 import { useNavigate } from 'react-router'
 
 const CheckOut = () => {

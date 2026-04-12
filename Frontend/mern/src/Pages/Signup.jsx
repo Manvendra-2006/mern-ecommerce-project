@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import api from '../Axios'
+import api from '../axios'
 
 const Signup = () => {
   const [name, setname] = useState('')

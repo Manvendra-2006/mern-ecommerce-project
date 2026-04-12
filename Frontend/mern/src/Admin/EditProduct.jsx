@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import api from '../Axios'
+import api from '../axios'
 
 const EditProduct = () => {
     const { id } = useParams()

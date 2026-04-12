@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import api from '../Axios'
+import api from '../axios'
 
 const CheckOutAddress = () => {
   const userId = localStorage.getItem("userId");

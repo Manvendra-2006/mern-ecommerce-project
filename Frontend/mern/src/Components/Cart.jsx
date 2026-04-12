@@ -2,7 +2,7 @@
 // // When any user is doing add to cart then always not a new document is not formed in carts usi ke andar add to cart hoga 
 
 import { useEffect, useState } from "react";
-import api from "../Axios";
+import api from "../axios";
 import { useNavigate } from "react-router";
 
 export default function Cart() {
