@@ -27,7 +27,7 @@ const AddProduct = () => {
             navigate("/admin/products")
         }
         catch (error) {
-            console.log("Product is not added")
+           alert("Product is not added")
         }
     }
 

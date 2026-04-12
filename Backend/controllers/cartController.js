@@ -10,9 +10,9 @@ export async function AddCart(req,resp){
                 { productId,quantity:1}
             ]})
         }
-        
+            
             const item = cart.items.find((item)=> item.productId.toString() === productId.toString()) // Yahaa Par hum ye check kar rhe hain ki product phele se rehta hain ya nhi 
-        
+            
         if(item){
             item.quantity +=1;
         }

@@ -43,7 +43,7 @@ const EditProduct = () => {
             alert("Product is updated")
         }
         catch (error) {
-            console.log("Products is not updated")
+           alert("Product is not updated")
         }
     }
 

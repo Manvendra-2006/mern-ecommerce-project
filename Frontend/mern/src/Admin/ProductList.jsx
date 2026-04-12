@@ -16,8 +16,8 @@ const ProductList = () => {
             alert("Product deleted Successfully")
             loadProducts()
         }
-        catch (error) {
-            console.log("error deleting", error)
+        catch (error) {            
+            alert("Error in deleting")
         }
     }
 

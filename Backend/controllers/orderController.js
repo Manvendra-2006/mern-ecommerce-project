@@ -1,4 +1,3 @@
-
 import Cart from '../models/Cart.js';
 import Order from '../models/Order.js';
 export const placeorder = async (req,resp) =>{

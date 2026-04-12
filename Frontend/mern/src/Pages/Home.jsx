@@ -6,16 +6,13 @@ const Home = () => {
   const [products, setproducts] = useState([])
   const [search, setsearch] = useState('')
   const [category, setcategory] = useState('')
-
   async function loadProducts() {
     const response = await api.get(`/products?search=${search}&category=${category}`)
     setproducts(response.data)
-  }
-
+  }    
   useEffect(() => {
     loadProducts()
   }, [search, category])
-
   const addToCart = async (productId) => {
     const userId = localStorage.getItem("userId");
     if (!userId) {
@@ -47,7 +44,6 @@ const Home = () => {
             flex: '1'
           }}
         />
-
         <select
           value={category}
           onChange={(e) => setcategory(e.target.value)}
@@ -62,8 +58,7 @@ const Home = () => {
           <option value="cosmetics">Cosmetics</option>
         </select>
       </div>
-
-      {/* Product Grid */}
+   
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }}>
 
         {products.map((item) => (

@@ -11,12 +11,10 @@ const Signup = () => {
     const userData = { name, email, password }
 
     api.post("/auth/signup", userData)
-      .then(() => {
-        console.log("User SignUp successfully")
+      .then(() => {       
         alert("User Registered Successfully")
       })
       .catch(() => {
-        console.log("User is not signup")
         alert("User is not registered successfully")
       })
   }

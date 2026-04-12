@@ -12,15 +12,13 @@ const Login = () => {
     const userData = { email, password }
 
     api.post("/auth/login", userData)
-      .then((res) => {
-        console.log("Login Successfully")
+      .then((res) => {       
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('userId', res.data.user.id)
         alert("Login Successfully")
         navigate("/")
       })
-      .catch(() => {
-        console.log("Login Failed")
+      .catch(() => {   
         alert("Login Not Valid")
       })
   }
