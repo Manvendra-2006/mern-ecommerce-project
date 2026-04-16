@@ -12,7 +12,7 @@ export const placeorder = async (req,resp) =>{
             quantity : item.quantity,
             price : item.productId.prices,
         }));
-        const totalAmount = orderItems.reduce((total,item)=> total + (item.prices * item.quantity) , 0);
+        const totalAmount = orderItems.reduce((total,item)=> total + (item.price * item.quantity) , 0);
         const newOrder = await Order.create({
             userId,
             items:orderItems,
