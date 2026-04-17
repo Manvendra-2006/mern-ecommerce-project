@@ -24,7 +24,7 @@ export const loginuser = async (req,resp) =>{
         if(!user){
             return resp.status(400).json({message:"User not found"})
         }
-
+    
         const match = await bcrypt.compare(password,user.password)
 
         if(!match){
@@ -36,7 +36,19 @@ export const loginuser = async (req,resp) =>{
             process.env.JWT_TOKEN,
             {expiresIn : "7d"}
         ) 
-
+        if(user.email === "admin@me.com"){
+             return resp.json({
+            message:"Login Successfully",
+            token,
+            user:{
+                id:user._id,
+                name:user.name,
+                email:user.email,
+                
+            },
+           role:"admin"
+        })
+        }
         resp.json({
             message:"Login Successfully",
             token,
@@ -44,7 +56,8 @@ export const loginuser = async (req,resp) =>{
                 id:user._id,
                 name:user.name,
                 email:user.email
-            }
+            },
+            role:"user"
         })
     }
     catch(error){
