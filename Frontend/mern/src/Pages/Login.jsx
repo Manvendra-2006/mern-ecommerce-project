@@ -12,11 +12,20 @@ const Login = () => {
     const userData = { email, password }
 
     api.post("/auth/login", userData)
-      .then((res) => {       
-        localStorage.setItem('token', res.data.token)
+      .then((res) => {                       
+        if(res.data.role==="admin"){
+          localStorage.setItem('token',res.data.token)
+          localStorage.setItem("adminId",res.data.user.id)
+          alert("Login Successfully")
+          navigate("/admin/products")
+        }
+        else if(res.data.role === "user"){
+localStorage.setItem('token', res.data.token)
         localStorage.setItem('userId', res.data.user.id)
         alert("Login Successfully")
+        
         navigate("/")
+        }
       })
       .catch(() => {   
         alert("Login Not Valid")
