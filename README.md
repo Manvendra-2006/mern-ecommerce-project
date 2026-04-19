@@ -113,7 +113,7 @@ Start the backend server:
 npm run dev
 ```
 
-The backend will run at: `http://localhost:8900`
+The backend will run at: `http://localhost:PORT`
 
 ---
 
@@ -125,14 +125,14 @@ npm install
 npm run dev
 ```
 
-The frontend will run at: `http://localhost:5173`
+The frontend will run at: `'/api`
 
 ---
 
 ## 🗄️ Database
 
-- **MongoDB URL:** `mongodb://localhost:27017/WebsiteData`
-- **Database Name:** `WebsiteData`
+- **MongoDB URL:** `mongodb_URL`
+- **Database Name:** `Database_name`
 - **ODM:** Mongoose
 
 Make sure your local MongoDB service is running before starting the backend:
@@ -430,12 +430,12 @@ Use **Postman** or **Thunder Client** (VS Code extension) to test all API endpoi
 
 **Step 1:** Register a new user
 ```
-POST http://localhost:8900/api/auth/signup
+POST http://localhost:PORT/api/auth/signup
 ```
 
 **Step 2:** Login and copy the JWT token from the response
 ```
-POST http://localhost:8900/api/auth/login
+POST http://localhost:PORT/api/auth/login
 ```
 
 **Step 3:** Add the token to all protected route requests as a header:
@@ -449,8 +449,8 @@ Authorization: Bearer <your_jwt_token>
 
 | Variable             | Description                        | Value                                   |
 |----------------------|------------------------------------|-----------------------------------------|
-| `PORT`               | Backend server port                | `8900`                                  |
-| `MONGO_URI`          | MongoDB connection string          | `mongodb://localhost:27017/WebsiteData` |
+| `PORT`               | Backend server port                | `PORT`                                  |
+| `MONGO_URI`          | MongoDB connection string          | `mongodb_URL` |
 | `JWT_SECRET`         | Secret key for signing JWT tokens  | `MYJWTSECRETKEY123`                     |
 | `BCRYPT_SALT_ROUNDS` | Number of salt rounds for bcrypt   | `10`                                    |
 
