@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { sendRegistrationEmail } from "../services/email.service.js";
 export const signupUser = async (req,resp) =>{
     const {name,email,password} = req.body // Destructuring
     const userExists = await User.findOne({email})
@@ -13,7 +14,8 @@ export const signupUser = async (req,resp) =>{
         email,
         password:hashPassword
     })
-    resp.json({message:"User registered successfully"})
+    await sendRegistrationEmail(email,name)
+    return resp.json({message:"User registered successfully"})
 }
 export const loginuser = async (req,resp) =>{
     try{

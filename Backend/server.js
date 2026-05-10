@@ -1,6 +1,6 @@
+import "dotenv/config"
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import router from './Routes/authRoutes.js'
 import productrouter from './Routes/ProductRoutes.js'
@@ -8,7 +8,7 @@ import cartrouter from './Routes/cartRoutes.js'
 import addressrouter from './Routes/addressRoutes.js'
 import orderRouter from './Routes/orderRoutes.js'
 import path from 'path'
-dotenv.config() // dotenv is a npm pacakge and dotenv.config() is a function which loads .env file variable in node.js application
+ // dotenv is a npm pacakge and dotenv.config() is a function which loads .env file variable in node.js application
 connectDB()
 const app = express()
 const __dirname = path.resolve()
