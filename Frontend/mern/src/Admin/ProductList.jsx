@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../axios'
+import { toast } from 'react-toastify'
 
 const ProductList = () => {
     const [products, setproducts] = useState([])
@@ -13,11 +14,11 @@ const ProductList = () => {
     async function deletedProducts(id) {
         try {
             await api.delete(`/products/delete/${id}`)
-            alert("Product deleted Successfully")
+            toast.success("Product deleted successfully")
             loadProducts()
         }
         catch (error) {            
-            alert("Error in deleting")
+            toast.error("Error in deleting")
         }
     }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import api from '../axios'
 import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const [email, setemail] = useState('')
@@ -16,19 +17,18 @@ const Login = () => {
         if(res.data.role==="admin"){
           localStorage.setItem('token',res.data.token)
           localStorage.setItem("adminId",res.data.user.id)
-          alert("Login Successfully")
+          toast.success("Login successfully")
           navigate("/admin/products")
         }
         else if(res.data.role === "user"){
-localStorage.setItem('token', res.data.token)
-        localStorage.setItem('userId', res.data.user.id)
-        alert("Login Successfully")
-        
-        navigate("/")
+          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('userId', res.data.user.id)
+          toast.success("Login successfully")
+          navigate("/")
         }
       })
       .catch(() => {   
-        alert("Login Not Valid")
+        toast.error("Login not valid")
       })
   }
 

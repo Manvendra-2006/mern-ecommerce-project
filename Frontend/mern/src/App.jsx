@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import ProductDetails from "./Pages/ProductDetails";
@@ -24,6 +26,18 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
+        <ToastContainer
+          position="top-right"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <Routes>
           <Route element={<Layout/>}>
           <Route path="/" element={<Home />} />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import api from '../axios'
+import { toast } from 'react-toastify'
 
 const EditProduct = () => {
     const { id } = useParams()
@@ -40,10 +41,10 @@ const EditProduct = () => {
                 category,
                 image
             })
-            alert("Product is updated")
+            toast.success("Product is updated")
         }
         catch (error) {
-           alert("Product is not updated")
+           toast.error("Product is not updated")
         }
     }
 

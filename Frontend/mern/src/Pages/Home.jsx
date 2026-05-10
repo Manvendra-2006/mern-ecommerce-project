@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api from '../axios'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Home = () => {
   const [products, setproducts] = useState([])
@@ -16,7 +17,7 @@ const Home = () => {
   const addToCart = async (productId) => {
     const userId = localStorage.getItem("userId");
     if (!userId) {
-      alert("Please log in to add items to your cart");
+      toast.info("Please log in to add items to your cart")
       return;
     }
 
@@ -26,6 +27,7 @@ const Home = () => {
     const total = res1.data.items.reduce((sum, item) => sum + item.quantity, 0)
     localStorage.setItem("cartCount", total);
     window.dispatchEvent(new Event('cartUpdated'))
+    toast.success("Added to cart")
   }
 
   return (

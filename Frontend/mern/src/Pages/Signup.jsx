@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import api from '../axios'
+import { toast } from 'react-toastify'
 
 const Signup = () => {
   const [name, setname] = useState('')
@@ -12,10 +13,10 @@ const Signup = () => {
 
     api.post("/auth/signup", userData)
       .then(() => {       
-        alert("User Registered Successfully")
+        toast.success("User registered successfully")
       })
       .catch(() => {
-        alert("User is not registered successfully")
+        toast.error("User is not registered successfully")
       })
   }
 

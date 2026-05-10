@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import api from '../axios'
 import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
 const AddProduct = () => {
     const [title, settitle] = useState('')
@@ -23,11 +24,11 @@ const AddProduct = () => {
         }
         try {
             await api.post("/products/add", productsData)
-            alert("Product is added")
+            toast.success("Product is added")
             navigate("/admin/products")
         }
         catch (error) {
-           alert("Product is not added")
+           toast.error("Product is not added")
         }
     }
 

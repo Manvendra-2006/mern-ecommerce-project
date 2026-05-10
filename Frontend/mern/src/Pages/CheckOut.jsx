@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../axios'
 import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
 const CheckOut = () => {
   const userId = localStorage.getItem("userId")
@@ -33,7 +34,7 @@ const CheckOut = () => {
 
   const placeOrder = async () => {
     if (!selectAddress) {
-      alert("Please Select an Address");
+      toast.error("Please select an address")
       return;
     }
     const res = await api.post("/order/order-placed", { userId, address: selectAddress })
